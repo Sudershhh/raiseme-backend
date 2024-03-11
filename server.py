@@ -255,6 +255,9 @@ def get_donations_for_one_campaign(campaign_id):
     serialized_donations = [donation.serialize() for donation in donations]
     return jsonify({'donations': serialized_donations})
 
+@app.route('/', methods=['GET'])
+def home():
+    return "Welcome to Raise Me!"
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000, debug=True)
