@@ -5,6 +5,7 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 from models import db, User, Campaign, Donation, Payment, TokenBlocklist, is_token_revoked
 from flask_jwt_extended import JWTManager, jwt_required, get_jwt_identity, get_jwt
+import os
 
 # Create an instance of Flask-SQLAlchemy
 ACCESS_EXPIRES = timedelta(hours=2)
@@ -259,5 +260,9 @@ def get_donations_for_one_campaign(campaign_id):
 def home():
     return "Welcome to Raise Me!"
 
+# if __name__ == "__main__":
+#     app.run(host="0.0.0.0", port=8000, debug=True)
+
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8000, debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
